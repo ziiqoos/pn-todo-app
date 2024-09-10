@@ -16,55 +16,27 @@
 - Front-end
   - [Angular](https://angular.io) - v18.1.0
   - [NgRx](https://ngrx.io) - v18.0.2
-- Back-end
-  - [Node.js](https://nodejs.org) - v19.6
-  - [Express](https://expressjs.com) - v4.16
-  - [Mongo](https://www.mongodb.com) - v4
-  - [Mongoose](https://mongoosejs.com) - v6.9
-- Build and Deployment
-  - [Nginx](https://www.nginx.com/) - v1.22
-  - [Docker](https://www.docker.com/) - v4.16
+  - [tailwindcss](https://tailwindcss.com/) - v3.4.10
 
 ## Features
 The ready-to-use features are:
-- Create and log into a personal account.
-- List all heroes in the HR department.
-- Sort heroes by name or powers.
-- Search for heroes by name or powers.
-- Add and view a new hero.
-- Rate heroes.
+- Add new Task.
+- Edit existing taks.
+- Delete Tasks.
+- Mark tasks as completed or uncomplete.
+- Filter tasks by status.
+- Filter Tasks by keywors.
 
 ## Setup
-1. To run the project in your local environment, you need to install :
-    - Docker 
-    - Docker Compose
-2. Clone the repository from Github, use command : (you can also download the zip file of the repo)
+1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
 
-       git clone https://github.com/ZiiQoOS/Heroes-Manager.git
+       git clone https://github.com/ziiqoos/pn-todo-app
 
-3. Rename the `api/.env.example` to `.env` and populate the file with your environment's informations. 
-    - The ***API_ACCESS_TOKEN*** is just an example for testing purposes, you **MUST** generate your own strong token.
-    - Tip : you can use the following native JS function `require('crypto').randomBytes(64).toString('hex')` or any other hashing function.
-4. Change to directory ***Heroes-Manager*** and run command : 
+2. Install the project dependencies, use comman :
+       npm install
 
-       docker-compose up
+3. Run the Application : 
+       ng serve
 
-5. The app is launched on : http://localhost:8181
-## Screenshots
-- **Login Page**
-
-![Example screenshot](./screenshots/User%20Login.png)
-- **Register Page**
-
-![Example screenshot](./screenshots/User%20Register.png)
-- **Heroes' List Page**
-
-![Example screenshot](./screenshots/Hero%20List.png)
-
-- **Hero Profile Add Page**  
-
-![Example screenshot](./screenshots/Hero%20Add.png)
-
-- **Hero Profile View Page**
-
-![Example screenshot](./screenshots/Hero%20View.png)
+4. Open the app using the link : 
+       http://localhost:4200
