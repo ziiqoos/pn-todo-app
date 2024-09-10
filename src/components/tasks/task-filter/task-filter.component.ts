@@ -10,7 +10,6 @@ import { Store } from '@ngrx/store';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './task-filter.component.html',
-  styleUrl: './task-filter.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskFilterComponent {

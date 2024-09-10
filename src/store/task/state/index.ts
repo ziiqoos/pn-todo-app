@@ -1,4 +1,5 @@
 import { createFeatureSelector } from '@ngrx/store';
+import { FilterStatus } from '../../../utils/task.utils';
 import { Task } from '../../../shared/models/Task.model';
 
 export interface TaskState {
@@ -13,7 +14,7 @@ export interface TaskState {
 export const initialState: TaskState = {
   tasks: [],
   filters: {
-    status: '',
+    status: FilterStatus.IN_PROGRESS,
     keyword: '',
   },
   error: null

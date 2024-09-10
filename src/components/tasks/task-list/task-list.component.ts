@@ -22,7 +22,6 @@ export class TaskListComponent {
   @Output() editingTask = new EventEmitter<Task>();
   @ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
 
-
   public tasks$: Observable<Task[]> = new Observable<Task[]>();
 
   constructor(private readonly store: Store) {
@@ -33,26 +32,37 @@ export class TaskListComponent {
     this.store.dispatch(loadTasks());
   }
 
-  editTask(task: Task) {
+  /**
+   * Emits an event to notify that the task is being edited.
+   * @param {Task} task - The task to be edited.
+   */
+  editTask(task: Task): void {
     this.editingTask.emit(task);
   }
 
-  drop(event: CdkDragDrop<Task[]>) {
+  /**
+   * Handles the drop event when a task is dragged and dropped to a new position.
+   * Updates the positions of tasks and dispatches the update action.
+   * @param {CdkDragDrop<Task[]>} event - The drag and drop event.
+   */
+  drop(event: CdkDragDrop<Task[]>): void {
     if (event.previousIndex !== event.currentIndex) {
-      // Reorder tasks array
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      // Update positions and dispatch updateTask action for each task with a changed position
       event.container.data.forEach((task, index) => {
         if (task.position !== index) {
           const updatedTask = { ...task, position: index };
-
-          // Dispatch action to update the task's position in the state
           this.store.dispatch(updateTask({ task: updatedTask }));
         }
       });
     }
   }
 
+  /**
+   * Tracks tasks by their ID to optimize rendering.
+   * @param {number} index - The index of the task in the list.
+   * @param {Task} task - The task object.
+   * @returns {string} - The ID of the task.
+   */
   trackByTaskId(index: number, task: Task): string {
     return task.id;
   }

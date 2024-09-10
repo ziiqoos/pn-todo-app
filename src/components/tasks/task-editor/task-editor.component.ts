@@ -1,5 +1,5 @@
 import { addTask, updateTask } from '../../../store/task/actions';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { newId } from '../../../utils/task.utils';
 import { Store } from '@ngrx/store';
@@ -11,10 +11,9 @@ import { TASK_TTL_DURATION } from '../../../utils/local-storage.utils';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './task-editor.component.html',
-  styleUrl: './task-editor.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskEditorComponent {
+export class TaskEditorComponent implements OnInit, OnChanges, OnDestroy {
   @Input() task!: Task | null;
   @Input() isEditing: boolean = false;
   @Output() cancelEdit = new EventEmitter<void>();
@@ -25,81 +24,104 @@ export class TaskEditorComponent {
 
   constructor(private readonly store: Store, private fb: FormBuilder) {
     this.taskForm = this.fb.group({
-      id: [this.isEditing ? this.task?.id : null],
+      id: [null],
       title: ['', [Validators.required]],
       description: [''],
       dueDate: [this.today],
-      completed: [this.isEditing ? this.task?.completed : false]
+      completed: [false]
     });
-
   }
 
   ngOnInit(): void {
-    if (this.isEditing) {
-      this.taskForm.get('id')?.patchValue(this.task?.id);
+    if (this.isEditing && this.task) {
+      this.populateForm(this.task);
     }
-
   }
-  save() {
-    const title = this.taskForm.get('title')?.value;
-    const description = this.taskForm.get('description')?.value;
-    const dueDate = this.taskForm.get('dueDate')?.value;
 
+  /**
+   * Saves the current task. If editing, updates the task; otherwise, adds a new task.
+   */
+  save(): void {
     if (this.taskForm.invalid) {
       this.taskForm.updateValueAndValidity();
       return;
     }
-    if (this.isEditing) {
-      console.log('this.taskForm.value', this.taskForm.value);
-      const { id, title, description, dueDate, created } = this.taskForm.value;
-      const task: Task = new TaskModel(id, title, description, this.task?.completed, dueDate, this.expirationTime, created, this.task?.position!)
-      this.store.dispatch(updateTask({ task }));
-    } else {
-      const task: Task = new TaskModel(newId(), title, description, false, dueDate, this.expirationTime, new Date(), -1)
-      this.store.dispatch(addTask({ task }));
-      // Reset task fields
-      this.taskForm.get('id')?.reset();
-      this.taskForm.get('title')?.reset();
-      this.taskForm.get('description')?.reset();
-      this.taskForm.get('dueDate')?.patchValue(this.today);
-    }
 
+    const { id, title, description, dueDate, completed, created } = this.taskForm.value;
+    const task = new TaskModel(
+      this.isEditing ? id : newId(),
+      title,
+      description,
+      this.isEditing ? completed : false,
+      dueDate,
+      this.expirationTime,
+      this.isEditing ? created : new Date(),
+      this.isEditing ? this.task?.position! : -1
+    );
+
+    this.store.dispatch(this.isEditing ? updateTask({ task }) : addTask({ task }));
+
+    if (!this.isEditing) this.resetForm();
   }
 
-  cancel() {
+  /**
+   * Cancels the editing process and resets the form.
+   */
+  cancel(): void {
+    this.closeEditor();
+  }
+
+  /**
+   * Closes the task editor without saving changes.
+   */
+  closeEditor(): void {
     this.isEditing = false;
-    this.taskForm.reset();
+    this.resetForm();
     this.cancelEdit.emit();
   }
 
-  closeEditor() {
-    this.isEditing = false;
-    this.cancelEdit.emit();
-  }
-
-  populateForm(task: Task | null) {
+  /**
+   * Populates the form with the values of the given task.
+   * @param {Task | null} task - The task to populate the form with.
+   */
+  populateForm(task: Task): void {
     this.taskForm.patchValue({
-      id: task?.id,
-      title: task?.title,
-      description: task?.description,
-      dueDate: task?.dueDate,
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      dueDate: task.dueDate,
+      completed: task.completed
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  /**
+   * Handles changes to input properties and updates the form if a task is provided.
+   * @param {SimpleChanges} changes - The changes to input properties.
+   */
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['task'] && this.task) {
       this.populateForm(this.task);
     }
   }
 
+  /**
+   * Cleans up by resetting the form and setting editing state to false.
+   */
   ngOnDestroy(): void {
-    // Reset task fields
-    this.taskForm.get('id')?.reset();
-    this.taskForm.get('title')?.reset();
-    this.taskForm.get('description')?.reset();
-    this.taskForm.get('dueDate')?.patchValue(this.today);
-    this.taskForm.updateValueAndValidity();
-    this.isEditing = false;
+    this.resetForm();
   }
 
+  /**
+   * Resets the task form to its default values.
+   */
+  private resetForm(): void {
+    this.taskForm.reset({
+      id: null,
+      title: '',
+      description: '',
+      dueDate: this.today,
+      completed: false
+    });
+    this.taskForm.updateValueAndValidity();
+  }
 }
