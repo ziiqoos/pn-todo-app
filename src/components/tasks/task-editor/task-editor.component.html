@@ -1,0 +1,49 @@
+<div class="relative max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+  <!-- Close Button -->
+  <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none" (click)="closeEditor()"
+    aria-label="Close">
+    <i class="fas fa-times text-lg"></i>
+  </button>
+
+  <h2 class="text-2xl text-primary font-semibold mb-4">
+    @if (isEditing) {
+    Edit task
+    }
+    @else {
+    Add New Task
+    }
+  </h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="save()">
+    <!-- Task Title Input -->
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700 text-sm font-medium mb-2">Task Title</label>
+      <input id="title" formControlName="title" type="text"
+        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        placeholder="Enter task title" />
+    </div>
+
+    <!-- Task Description Input -->
+    <div class="mb-4">
+      <label for="description" class="block text-gray-700 text-sm font-medium mb-2">Description</label>
+      <textarea id="description" formControlName="description" rows="5"
+        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        placeholder="Enter task description"></textarea>
+    </div>
+
+    <!-- Date Picker -->
+    <div class="mb-4">
+      <label for="dueDate" class="block text-gray-700 text-sm font-medium mb-2">Due Date</label>
+      <input id="dueDate" formControlName="dueDate" type="date" [min]="today"
+        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-end space-x-4">
+      <button type="button" (click)="cancel()" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400">
+        Cancel
+      </button>
+      <button type="submit" class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-600">Save</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,28 @@
+<app-toolbar></app-toolbar>
+
+<div class="flex flex-col md:flex-row justify-center mt-4 flex-wrap w-full">
+  <!-- Task Editor -->
+  <div class="w-full md:w-1/4 p-4 order-1 md:order-1 text-center">
+    @if (!showTaskEditor) {
+    <button
+      class="w-16 h-16 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      (click)="toggleTaskEditor(true)">
+      <i class="fas fa-plus text-3xl"></i>
+    </button>
+    }
+    @if (showTaskEditor) {
+    <app-task-editor [task]="selectedTask" [isEditing]="isEditing"
+      (cancelEdit)="toggleTaskEditor(false)"></app-task-editor>
+    }
+  </div>
+
+  <!-- Task List -->
+  <div class="w-full md:w-1/2 p-4 order-3 md:order-2">
+    <app-task-list (editingTask)="editTask($event)"></app-task-list>
+  </div>
+
+  <!-- Task Filter -->
+  <div class="w-full md:w-1/4 p-4 order-2 md:order-3">
+    <app-task-filter></app-task-filter>
+  </div>
+</div>

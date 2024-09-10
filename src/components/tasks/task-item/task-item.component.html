@@ -1,0 +1,60 @@
+<div
+  class="flex mx-auto bg-white shadow-sm rounded-lg overflow-hidden mb-4 mx-4"
+  [ngClass]="{'fade-out': hideItem, 'highlighted': highlightItem}"
+  cdkDrag
+>
+  <div class="p-4 flex items-center justify-between w-full">
+    <div class="flex items-center">
+      <!-- Drag Handle -->
+      <div cdkDragHandle class="mr-3 cursor-move">
+        <i class="fas fa-grip-vertical text-primary text-md"></i>
+      </div>
+
+      <!-- Completed checkbox -->
+      <div>
+        <input
+          type="checkbox"
+          id="task-{{ task.id }}"
+          (click)="hideTask(task.id)"
+          class="h-8 w-8 text-blue-500 focus:ring-blue-500 mr-4"
+          [checked]="task.completed"
+        />
+        <label for="task-{{ task.id }}" class="sr-only">Complete</label>
+      </div>
+
+      <!-- Task title and badge -->
+      <div>
+        <div class="flex items-center space-x-2">
+          <h2
+            class="text-xl font-semibold truncate"
+            [attr.title]="task.title"
+            [innerText]="truncateTitle(task.title)"
+          ></h2>
+          <!-- Completed Badge -->
+          <span
+            *ngIf="task.completed"
+            class="bg-violet-400 text-white text-xs font-medium px-2 py-1 rounded-full"
+            >Completed</span
+          >
+        </div>
+        <p class="text-sm break-all text-gray-400 mt-1 mb-2">{{ task.description }}</p>
+        <div class="flex items-center text-gray-500 text-sm">
+          <i class="fa-regular fa-clock mr-1 text-red-500"></i>
+          <span>{{ task.dueDate | date: 'fullDate' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="flex space-x-3 ml-1">
+      <i
+        class="fas fa-edit text-primary hover:text-blue-600 cursor-pointer text-xl"
+        (click)="editTask(task)"
+      ></i>
+      <i
+        class="fas fa-trash text-red-500 hover:text-red-600 cursor-pointer text-xl"
+        (click)="hideTask(task.id, true)"
+      ></i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: #fffbcc;
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+
+.highlighted {
+  animation: highlight 1.5s ease-in-out;
+}
