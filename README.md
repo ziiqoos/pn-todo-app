@@ -1,14 +1,15 @@
 # Papernest To-Do App
 ## Context
 
-> This is a front-end engineer position tech test for [papernest](https://papernest.com/)
+> This is a front-end engineer position technical test for [papernest](https://papernest.com/)
+>
+> To view a live version of the app deployed on Vercel, please visit : [papernest-todo](https://pn-todo-app.vercel.app/)
 
 ## Table of Contents
 * [Main Technologies](#main-technologies)
 * [Features](#features)
 * [Technical features](#technical-features)
 * [Setup](#setup)
-* [Live app](#live-app)
 
 
 ## Main Technologies
@@ -35,6 +36,7 @@ The main technical features in the project are :
  - **Data Persistence**: Managed through localStorage
  - **Virtual Loading**: Using Angular's Virtual Scrolling CDK
  - **TTL (Time-To-Live) Strategy**: Employed to filter out expired tasks
+ - **Automated Deployment**: Utilizing Vercel for automatic app deployment
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
@@ -52,8 +54,4 @@ The main technical features in the project are :
 4. Open the app using the link : 
 
        http://localhost:4200
-
-## Live App
-you can see a live version of the app deployed on Vercel, using the following link : 
-  - [Live App](https://pn-todo-app.vercel.app/)
 
