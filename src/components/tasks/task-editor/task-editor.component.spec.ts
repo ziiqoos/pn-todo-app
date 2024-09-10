@@ -19,7 +19,7 @@ describe('TaskEditorComponent', () => {
     dueDate: new Date('2024-09-10'),
     completed: false,
     expiresAt: Date.now() + TASK_TTL_DURATION,
-    created:  new Date('2024-09-01'),
+    created: new Date('2024-09-01'),
     position: 1,
   };
 
@@ -39,6 +39,45 @@ describe('TaskEditorComponent', () => {
     spyOn(store, 'dispatch');
 
     fixture.detectChanges(); // Trigger initial change detection
+  });
+
+  it('should populate form if editing mode is active with a task', () => {
+    // Arrange
+    component.isEditing = true;
+    component.task = mockTask;
+    spyOn(component, 'populateForm');
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(component.populateForm).toHaveBeenCalledWith(mockTask);
+  });
+
+  it('should not populate form if not editing', () => {
+    // Arrange
+    component.isEditing = false;
+    component.task = mockTask;
+    spyOn(component, 'populateForm');
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(component.populateForm).not.toHaveBeenCalled();
+  });
+
+  it('should not populate form if editing but task is not provided', () => {
+    // Arrange
+    component.isEditing = true;
+    component.task = null; // No task is provided
+    spyOn(component, 'populateForm');
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(component.populateForm).not.toHaveBeenCalled();
   });
 
   it('should create the component', () => {
@@ -86,10 +125,10 @@ describe('TaskEditorComponent', () => {
     expect(component.cancelEdit.emit).toHaveBeenCalled();
     expect(component.taskForm.value).toEqual({
       id: null,
-      title: null,
-      description: null,
-      dueDate: null,
-      completed: null
+      title: '',
+      description: '',
+      dueDate: '2024-09-10',
+      completed: false
     });
   });
 
@@ -101,4 +140,5 @@ describe('TaskEditorComponent', () => {
     expect(component.isEditing).toBeFalse();
     expect(component.cancelEdit.emit).toHaveBeenCalled();
   });
+
 });

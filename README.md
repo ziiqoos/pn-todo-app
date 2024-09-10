@@ -18,13 +18,22 @@
 
 ## Features
 The ready-to-use features are:
-- Add new Task
+- Add new tasks
 - Edit existing tasks
 - Delete Tasks
 - Mark tasks as completed or uncompleted
 - Filter tasks by status
 - Filter Tasks by keywords
+- Drag and drop to reorganize tasks by priority
 - View tasks after reloading the page
+
+## Technical features
+The main technical features in the project are :
+ - **State Management**: Implemented using NgRx
+ - **Unit Testing**: Conducted with Jasmine and Karma
+ - **Data Persistence**: Managed through localStorage
+ - **Virtual Loading**: Using Angular's Virtual Scrolling CDK
+ - **TTL (Time-To-Live) Strategy**: Employed to filter out expired tasks
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
