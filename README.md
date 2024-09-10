@@ -7,7 +7,7 @@
 * [Main Technologies](#main-technologies)
 * [Features](#features)
 * [Setup](#setup)
-* [Screenshots](#screenshots)
+* [Live app](#live-app)
 
 
 ## Main Technologies
@@ -18,12 +18,12 @@
 
 ## Features
 The ready-to-use features are:
-- Add new Task.
-- Edit existing tasks.
-- Delete Tasks.
-- Mark tasks as completed or uncomplete.
-- Filter tasks by status.
-- Filter Tasks by keywords.
+- Add new Task
+- Edit existing tasks
+- Delete Tasks
+- Mark tasks as completed or uncompleted
+- Filter tasks by status
+- Filter Tasks by keywords
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
@@ -41,3 +41,8 @@ The ready-to-use features are:
 4. Open the app using the link : 
 
        http://localhost:4200
+
+## Live app
+you can see a live version of the app deployed on [Vercel](https://vercel.com/), using the following link : 
+  - [Live App](https://pn-todo-app.vercel.app/)
+
