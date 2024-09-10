@@ -1,11 +1,12 @@
 # Papernest To-Do App
 ## Context
 
-> This is a Front-end engineer position tech test for [papernest](https://papernest.com/)
+> This is a front-end engineer position tech test for [papernest](https://papernest.com/)
 
 ## Table of Contents
 * [Main Technologies](#main-technologies)
 * [Features](#features)
+* [Technical features](#technical-features)
 * [Setup](#setup)
 * [Live app](#live-app)
 
@@ -25,7 +26,7 @@ The ready-to-use features are:
 - Filter tasks by status
 - Filter Tasks by keywords
 - Drag and drop to reorganize tasks by priority
-- View tasks after reloading the page
+- View tasks persisted after reloading the page
 
 ## Technical features
 The main technical features in the project are :
@@ -52,7 +53,7 @@ The main technical features in the project are :
 
        http://localhost:4200
 
-## Live app
-you can see a live version of the app deployed on [Vercel](https://vercel.com/), using the following link : 
+## Live App
+you can see a live version of the app deployed on Vercel, using the following link : 
   - [Live App](https://pn-todo-app.vercel.app/)
 
