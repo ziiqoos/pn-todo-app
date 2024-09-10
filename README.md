@@ -32,7 +32,7 @@ The ready-to-use features are:
 ## Technical features
 The main technical features in the project are :
  - **State Management**: Implemented using NgRx
- - **Unit Testing**: Conducted with Jasmine and Karma
+ - **Unit Testing**: Conducted with Jasmine and Karma (Up to **83%** of code coverage)
  - **Data Persistence**: Managed through localStorage
  - **Virtual Loading**: Using Angular's Virtual Scrolling CDK
  - **TTL (Time-To-Live) Strategy**: Employed to filter out expired tasks
