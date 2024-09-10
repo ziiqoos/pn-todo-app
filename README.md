@@ -1,9 +1,7 @@
 # Papernest To-Do App
 ## Context
 
-> The United Nations Super Heroes Fund is an employment agency for heroes , this project is a simple web app to help them manage their HR department.
-
-> This is a Front-end engineer position challenge for [papernest](https://papernest.com/)
+> This is a Front-end engineer position tech test for [papernest](https://papernest.com/)
 
 ## Table of Contents
 * [Main Technologies](#main-technologies)
