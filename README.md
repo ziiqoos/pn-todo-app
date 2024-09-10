@@ -36,7 +36,8 @@ The main technical features in the project are :
  - **Data Persistence**: Managed through localStorage
  - **Virtual Loading**: Using Angular's Virtual Scrolling CDK
  - **TTL (Time-To-Live) Strategy**: Employed to filter out expired tasks
- - **Automated Deployment**: Utilizing Vercel for automatic app deployment
+ - **Automated Deployment**: Using Vercel for automatic app deployment
+ - **Responsive Design**: Implemented to ensure the app adapts to various screen sizes and devices
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
