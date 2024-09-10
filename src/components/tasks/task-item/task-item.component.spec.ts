@@ -27,7 +27,7 @@ describe('TaskItemComponent', () => {
     expiresAt: Date.now() + TASK_TTL_DURATION
   };
 
-  const mockFilters = { status: 'in-progress', keyword: '' };
+  const mockFilters = { status: FilterStatus.TODO, keyword: '' };
 
   beforeEach(async () => {
     actionsSubject = new Subject();
@@ -71,7 +71,7 @@ describe('TaskItemComponent', () => {
 
   it('should hide the task and dispatch deleteTask action when hideTask is called with removeTask true', (done) => {
     spyOn(store, 'dispatch');
-    component.filters = { status: FilterStatus.IN_PROGRESS, keyword: '' };
+    component.filters = { status: FilterStatus.TODO, keyword: '' };
 
     component.hideTask('1', true);
 
@@ -85,7 +85,7 @@ describe('TaskItemComponent', () => {
 
   it('should hide the task and dispatch toggleTaskCompletion action when hideTask is called with removeTask false', (done) => {
     spyOn(store, 'dispatch');
-    component.filters = { status: FilterStatus.IN_PROGRESS, keyword: '' };
+    component.filters = { status: FilterStatus.TODO, keyword: '' };
 
     component.hideTask('1', false);
 

@@ -14,7 +14,7 @@ export interface TaskState {
 export const initialState: TaskState = {
   tasks: [],
   filters: {
-    status: FilterStatus.IN_PROGRESS,
+    status: FilterStatus.TODO,
     keyword: '',
   },
   error: null

@@ -35,7 +35,7 @@ describe('TaskFilterComponent', () => {
 
   it('should initialize the form with default values', () => {
     const formValues = component.filterForm.value;
-    expect(formValues.status).toBe('in-progress');
+    expect(formValues.status).toBe(FilterStatus.TODO);
     expect(formValues.keyword).toBe('');
   });
 

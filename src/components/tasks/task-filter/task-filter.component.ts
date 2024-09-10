@@ -17,7 +17,7 @@ export class TaskFilterComponent {
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.filterForm = this.fb.group({
-      status: [FilterStatus.IN_PROGRESS],
+      status: [FilterStatus.TODO],
       keyword: ['']
     });
 
