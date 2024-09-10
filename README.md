@@ -19,9 +19,9 @@
 
 ## Features
 The ready-to-use features are:
-- Add new tasks
-- Edit existing tasks
-- Delete Tasks
+- Add new tasks with additional details, including title, description, and due date
+- Edit existing tasks and its informations
+- Delete tasks
 - Mark tasks as completed or uncompleted
 - Filter tasks by status
 - Filter Tasks by keywords
