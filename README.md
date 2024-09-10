@@ -19,11 +19,11 @@
 ## Features
 The ready-to-use features are:
 - Add new Task.
-- Edit existing taks.
+- Edit existing tasks.
 - Delete Tasks.
 - Mark tasks as completed or uncomplete.
 - Filter tasks by status.
-- Filter Tasks by keywors.
+- Filter Tasks by keywords.
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
@@ -31,10 +31,13 @@ The ready-to-use features are:
        git clone https://github.com/ziiqoos/pn-todo-app
 
 2. Install the project dependencies, use comman :
+
        npm install
 
 3. Run the Application : 
+
        ng serve
 
 4. Open the app using the link : 
+
        http://localhost:4200
