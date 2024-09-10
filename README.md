@@ -24,6 +24,7 @@ The ready-to-use features are:
 - Mark tasks as completed or uncompleted
 - Filter tasks by status
 - Filter Tasks by keywords
+- View tasks after reloading the page
 
 ## Setup
 1. Clone the repository from Github, use command : (you can also download the zip file of the repo)
